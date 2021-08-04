@@ -24,12 +24,13 @@ from torch.utils.tensorboard import SummaryWriter
 from utils import rgb_loader, train_one_epoch, evaluate, test_model
 
 os.environ["CUDA_VISIBLE_DEVICES"] = '0'
+torch.manual_seed(90)
 
 def dataset_split(dataset, split_rate:float = 0.2):
     dataset_len = len(dataset)
     lengths = [dataset_len - int(dataset_len * split_rate), int(dataset_len * split_rate)]
     # 设置seed，确保随机结果的可复现性
-    left_dataset, split_dataset = random_split(dataset=dataset, lengths=lengths, generator=torch.Generator().manual_seed(10))
+    left_dataset, split_dataset = random_split(dataset=dataset, lengths=lengths)
     return left_dataset, split_dataset
 
 def dataset_split_by_path(data_path, transform, loader=rgb_loader, split_rate:float = 0.2):
