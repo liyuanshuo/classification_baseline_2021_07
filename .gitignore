@@ -15,4 +15,9 @@ log
 *.jpg
 *.csv
 *.png
+
+
 image
+
+vggnet/runs
+vggnet/__pycache__
