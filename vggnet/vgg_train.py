@@ -1,7 +1,6 @@
 import warnings
 import os
 import math
-import numpy as np
 import pandas as pd
 import json
 import argparse
@@ -84,7 +83,7 @@ def main(args):
     if os.path.exists('../weight') is False:
         os.makedirs("../weight")
     
-    tb_writer = SummaryWriter()
+    tb_writer = SummaryWriter(args.log_path)
     num_workers = args.nw if args.nw > 0 else int(os.cpu_count()/2)
     batch_size = args.batch_size
     labels = os.listdir(args.data_path)
@@ -169,6 +168,7 @@ if __name__ == '__main__':
     # 预训练权重
     parser.add_argument('--weight', type=str, default='./vggnet/vgg.pth', help='initial weights path')
     parser.add_argument('--save_path', type=str, default='./weight/')
+    parser.add_argument('--log_path', type=str, default='./log/vgg')
 
     parser.add_argument('--device', default='cuda', help='device id(i.e. 0 or 0, 1 or cpu)')
 

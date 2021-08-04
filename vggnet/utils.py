@@ -121,6 +121,6 @@ def test_model(model, data_loader, device, epoch, class_labels:list):
             accu_loss.item() / (step + 1),
             accu_num.item() / sample_num)
         result = classification_report(test_result['labels'], test_result['preds'], target_names=class_labels, zero_division=0, output_dict=True, digits=6)
-        print(classification_report(test_result['labels'], test_result['preds'], target_names=class_labels, zero_division=0, digits=6))
+        # print(classification_report(test_result['labels'], test_result['preds'], target_names=class_labels, zero_division=0, digits=6))
 
     return accu_loss.item() / (step + 1), accu_num.item() / sample_num, pd.DataFrame(result).transpose()
