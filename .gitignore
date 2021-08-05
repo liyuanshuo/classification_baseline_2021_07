@@ -5,7 +5,7 @@
 weight
 
 # 忽略日志文件
-log
+# log
 
 .vscode
 
@@ -13,7 +13,6 @@ log
 *.pyc
 *.pth
 *.jpg
-*.csv
 *.png
 *.0
 
