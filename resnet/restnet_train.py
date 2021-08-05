@@ -78,7 +78,7 @@ def main(args):
     data_transform = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.ToTensor(),
-        transforms.Normalize([0.5, 0.5, 0.5],[0.5, 0.5, 0.5])
+        transforms.Normalize([0.22442342, 0.22442342, 0.22442342], [0.079417765, 0.079417765, 0.079417765])
         ])
     
     if os.path.exists('../weight') is False:
@@ -99,10 +99,10 @@ def main(args):
     model = model_modify(model, args.num_classes)
     model = model.to(device)
 
-    optimizer = optim.Adam(model.parameters(), lr=args.lr)
+    optimizer = optim.SGD(model.parameters(), lr=args.lr, weight_decay=0.001)
 
-    # Scheduler https://arxiv.org/pdf/1812.01187.pdf
-    lf = lambda x : ((1+math.cos(x*math.pi/args.epoch))/2)*(1-args.lrf) + args.lrf # cosine
+    # Scheduler https://arxiv.org/pdf/1812.01187.pdf 
+    lf = lambda x: ((1 + math.cos(x * math.pi / args.epoch)) / 2) * (1 - args.lrf) + args.lrf  # cosine
     scheduler = lr_scheduler.LambdaLR(optimizer, lr_lambda=lf)
 
     for epoch in range(args.epoch):
@@ -160,11 +160,11 @@ if __name__ == '__main__':
     parser.add_argument('--epoch', type=int, default=20)
     parser.add_argument('--nw', type=int, default=0)
     parser.add_argument('--batch_size', type=int, default=16)
-    parser.add_argument('--lr', type=float, default=0.005)
+    parser.add_argument('--lr', type=float, default=0.01)
     parser.add_argument('--lrf', type=float, default=0.01)
 
     # 数据集所在目录
-    parser.add_argument('--data_path', type=str, default='F:/360Downloads/PavementData2107/')
+    parser.add_argument('--data_path', type=str, default='F:/360Downloads/PavementDataResize2107/')
 
     # 预训练权重
     parser.add_argument('--weight', type=str, default='./resnet/resnet.pth', help='initial weights path')

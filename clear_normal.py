@@ -19,7 +19,7 @@ def cost_time(func):
 
     return wrapper
 
-origin_path = 'F:/360Downloads/PavementData2107/无病害/'
+origin_path = 'F:/360Downloads/PavementData2107/normal_old/'
 
 target_path = 'F:/360Downloads/PavementData2107/normal/'
 
@@ -47,4 +47,4 @@ def clear_data(origin_path:str, target_path:str, select_num : int = 10000):
 
 
 if __name__ == '__main__':
-    clear_data(origin_path, target_path)
+    clear_data(origin_path, target_path, 6000)
