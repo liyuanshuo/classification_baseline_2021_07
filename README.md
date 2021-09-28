@@ -209,12 +209,3 @@ error: Failed to connect to github.com port 443: Timed out
 `git config --global --unset http.proxy`
 
 `git config --global --unset https.proxy`
-
-
-## 数据上传云端方式
-
-1. 压缩后上传到微软的学生OneDrive云盘中，生成一个共享链接，比如`https://stnuceducn-my.sharepoint.com/:u:/g/personal/1405024239_st_nuc_edu_cn/EbwL4VAWuoFDrz_156GCmwkBGd5vUcCu7BXOgivT5mU9Jw?e=RmyxKF`
-2. 在第一步获取到的共享链接后面加上`download=1`就可以拼接成一个完整的下载链接
-3. 在notebook中直接利用wget命令`!wget "https://stnuceducn-my.sharepoint.com/:u:/g/personal/1405024239_st_nuc_edu_cn/EbwL4VAWuoFDrz_156GCmwkBGd5vUcCu7BXOgivT5mU9Jw?e=RmyxKF&download=1" -O dataset.zip`
-4. 获取下载后，解压即可，`!unzip baseline.zip > /dev/null 2>&1`
-5. 记得删掉压缩包，节约线上的存储空间`rm -rf dataset.zip`
